@@ -1,5 +1,5 @@
 # whosinmytower
-a simple game, made with construct 2.
+A simple game, made with construct 2.
 
 
 Art:
