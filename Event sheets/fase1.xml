@@ -1,0 +1,849 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>fase1</name>
+    <events>
+        <variable constant="0" name="closest_y" sid="936030308655373" static="0" type="number">0</variable>
+        <variable constant="0" name="closest_x" sid="389172970327524" static="0" type="number">0</variable>
+        <variable constant="0" name="closest" sid="531906871718472" static="0" type="number">999999</variable>
+        <variable constant="0" name="highscore" sid="568437821531222" static="0" type="number">0</variable>
+        <variable constant="0" name="spawn" sid="332867936519124" static="0" type="number">1</variable>
+        <variable constant="0" name="pontos" sid="503894589568609" static="0" type="number">0</variable>
+        <variable constant="0" name="vida" sid="746565874949272" static="0" type="number">3</variable>
+        <event-group description="" sid="738939871704263" title="movement">
+            <sub-events>
+                <event-block sid="319365949768082">
+                    <conditions>
+                        <condition id="0" name="On click" sid="582294430446872" type="Mouse">
+                            <param id="0" name="Mouse button">0</param>
+                            <param id="1" name="Click type">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="469495299234175" type="player">
+                            <param id="0" name="Object">tiro</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="Image point">1</param>
+                        </action>
+                        <action id="-22" name="Set angle toward position" sid="225669228918103" type="tiro">
+                            <param id="0" name="X">Mouse.X</param>
+                            <param id="1" name="Y">Mouse.Y</param>
+                        </action>
+                        <action id="0" name="Play" sid="225708090150623" type="Audio">
+                            <param id="0" name="Audio file">SmallExplosion8-Bit</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">-20</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="839639174976640">
+                    <conditions>
+                        <condition id="2" name="Key is down" sid="151006683754953" type="Keyboard">
+                            <param id="0" name="Key">87</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="746861238573827" type="player">
+                            <param id="0" name="Control">2</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="635952044298500">
+                    <conditions>
+                        <condition id="2" name="Key is down" sid="866490374783172" type="Keyboard">
+                            <param id="0" name="Key">65</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="296261083089937" type="player">
+                            <param id="0" name="Control">0</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="600896608869587" type="player">
+                            <param id="0" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="992593784797134">
+                    <conditions>
+                        <condition id="2" name="Key is down" sid="463379262495097" type="Keyboard">
+                            <param id="0" name="Key">83</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="134551190225756" type="player">
+                            <param id="0" name="Control">3</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="847408226662648">
+                    <conditions>
+                        <condition id="2" name="Key is down" sid="622673132850838" type="Keyboard">
+                            <param id="0" name="Key">68</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="644635208659470" type="player">
+                            <param id="0" name="Control">1</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="744710611201913" type="player">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="793159759140258">
+                    <conditions />
+                    <actions>
+                        <action id="-9" name="Set value" sid="930018967322653" type="System">
+                            <param id="0" name="Variable">closest</param>
+                            <param id="1" name="Value">distance(player.X,player.Y,Sprite8.X,Sprite8.Y)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="978583995037543" type="System">
+                            <param id="0" name="Variable">closest_x</param>
+                            <param id="1" name="Value">Sprite8.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="282194094864817" type="System">
+                            <param id="0" name="Variable">closest_y</param>
+                            <param id="1" name="Value">Sprite8.Y</param>
+                        </action>
+                        <action id="0" name="Set text" sid="336082787866884" type="Text2">
+                            <param id="0" name="Text">&quot;&quot;&amp;Sprite8.X&amp;&quot;,&quot;&amp;Sprite8.Y</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="346728706767078">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="372288088251894" type="player">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="X co-ordinate">closest_x</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="614055958054059" type="System">
+                            <param id="0" name="First value">Sprite8.Count</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="223916589305151" type="player">
+                            <param id="0" name="Control">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="808073020541060">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="635768391681097" type="player">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="X co-ordinate">closest_x</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="430050518525977" type="System">
+                            <param id="0" name="First value">Sprite8.Count</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="774313792144403" type="player">
+                            <param id="0" name="Control">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="999386725458504">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="875980930395335" type="player">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="Y co-ordinate">closest_y</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="382430491962281" type="System">
+                            <param id="0" name="First value">Sprite8.Count</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="470137513648171" type="player">
+                            <param id="0" name="Control">3</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="976341681778574">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="774019464161459" type="player">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="Y co-ordinate">closest_y</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="315310697299582" type="System">
+                            <param id="0" name="First value">Sprite8.Count</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="661000572045350" type="player">
+                            <param id="0" name="Control">2</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="941987744726371" title="enemies">
+            <sub-events>
+                <event-block sid="524421892351517">
+                    <conditions>
+                        <condition behavior="LineOfSight" id="0" name="Has LOS to object" sid="269051535859903" type="Sprite4">
+                            <param id="0" name="Object">player</param>
+                        </condition>
+                        <condition id="-1" name="Compare X" sid="887773810684191" type="Sprite4">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="X co-ordinate">player.X-player.Width</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="125249284474992" type="Sprite4">
+                            <param id="0" name="Control">1</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="492790149509722" type="Sprite4">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="756785932450970">
+                    <conditions>
+                        <condition behavior="LineOfSight" id="0" name="Has LOS to object" sid="896675170541145" type="Sprite4">
+                            <param id="0" name="Object">player</param>
+                        </condition>
+                        <condition id="-1" name="Compare X" sid="321699634521487" type="Sprite4">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="X co-ordinate">player.X+player.Width</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="800691154331890" type="Sprite4">
+                            <param id="0" name="Control">0</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="737491111333825" type="Sprite4">
+                            <param id="0" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="417412840491204">
+                    <conditions>
+                        <condition behavior="LineOfSight" id="0" name="Has LOS to object" sid="844007637439344" type="Sprite4">
+                            <param id="0" name="Object">player</param>
+                        </condition>
+                        <condition id="-2" name="Compare Y" sid="367436611775895" type="Sprite4">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="Y co-ordinate">player.Y-player.Width</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="471351833037011" type="Sprite4">
+                            <param id="0" name="Control">3</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="859271279900708">
+                    <conditions>
+                        <condition behavior="LineOfSight" id="0" name="Has LOS to object" sid="172825869071793" type="Sprite4">
+                            <param id="0" name="Object">player</param>
+                        </condition>
+                        <condition id="-2" name="Compare Y" sid="662585118961289" type="Sprite4">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="Y co-ordinate">player.Y+player.Width</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="989093526087531" type="Sprite4">
+                            <param id="0" name="Control">2</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="178922619101967">
+                    <conditions>
+                        <condition behavior="LineOfSight" id="0" name="Has LOS to object" sid="461747827558510" type="Sprite5">
+                            <param id="0" name="Object">player</param>
+                        </condition>
+                        <condition id="-1" name="Compare X" sid="113917422447736" type="Sprite5">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="X co-ordinate">player.X-player.Width</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="751673992774748" type="Sprite5">
+                            <param id="0" name="Control">1</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="115285685773383" type="Sprite5">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="562486168916958">
+                    <conditions>
+                        <condition behavior="LineOfSight" id="0" name="Has LOS to object" sid="488489778034242" type="Sprite5">
+                            <param id="0" name="Object">player</param>
+                        </condition>
+                        <condition id="-1" name="Compare X" sid="592355867459840" type="Sprite5">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="X co-ordinate">player.X+player.Width</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="256859576295380" type="Sprite5">
+                            <param id="0" name="Control">0</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="793976135098459" type="Sprite5">
+                            <param id="0" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="819162694162702">
+                    <conditions>
+                        <condition behavior="LineOfSight" id="0" name="Has LOS to object" sid="922456847265178" type="Sprite5">
+                            <param id="0" name="Object">player</param>
+                        </condition>
+                        <condition id="-2" name="Compare Y" sid="830236087127260" type="Sprite5">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="Y co-ordinate">player.Y-player.Width</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="411484181628994" type="Sprite5">
+                            <param id="0" name="Control">3</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="207390358544852">
+                    <conditions>
+                        <condition behavior="LineOfSight" id="0" name="Has LOS to object" sid="984306738727246" type="Sprite5">
+                            <param id="0" name="Object">player</param>
+                        </condition>
+                        <condition id="-2" name="Compare Y" sid="478534829697851" type="Sprite5">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="Y co-ordinate">player.Y+player.Width</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="783691055898620" type="Sprite5">
+                            <param id="0" name="Control">2</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="852965363354991">
+                    <conditions>
+                        <condition behavior="LineOfSight" id="0" name="Has LOS to object" sid="232721410672245" type="Sprite6">
+                            <param id="0" name="Object">player</param>
+                        </condition>
+                        <condition id="-1" name="Compare X" sid="403754133637289" type="Sprite6">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="X co-ordinate">player.X-player.Width</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="591650829239701" type="Sprite6">
+                            <param id="0" name="Control">1</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="995626591799601" type="Sprite6">
+                            <param id="0" name="State">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="348615196305847">
+                    <conditions>
+                        <condition behavior="LineOfSight" id="0" name="Has LOS to object" sid="250492165196338" type="Sprite6">
+                            <param id="0" name="Object">player</param>
+                        </condition>
+                        <condition id="-1" name="Compare X" sid="904632523936181" type="Sprite6">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="X co-ordinate">player.X+player.Width</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="654908778443392" type="Sprite6">
+                            <param id="0" name="Control">0</param>
+                        </action>
+                        <action id="7" name="Set mirrored" sid="516825009289685" type="Sprite6">
+                            <param id="0" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="463011817560209">
+                    <conditions>
+                        <condition behavior="LineOfSight" id="0" name="Has LOS to object" sid="979196317718861" type="Sprite6">
+                            <param id="0" name="Object">player</param>
+                        </condition>
+                        <condition id="-2" name="Compare Y" sid="409365098960630" type="Sprite6">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="Y co-ordinate">player.y+player.Width</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="905925263171691" type="Sprite6">
+                            <param id="0" name="Control">2</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="404150530225941">
+                    <conditions>
+                        <condition behavior="LineOfSight" id="0" name="Has LOS to object" sid="867253769620502" type="Sprite6">
+                            <param id="0" name="Object">player</param>
+                        </condition>
+                        <condition id="-2" name="Compare Y" sid="793879349135115" type="Sprite6">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="Y co-ordinate">player.y-player.Width</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="306122151506054" type="Sprite6">
+                            <param id="0" name="Control">3</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-block sid="245805805945740">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="827173343218488" type="tiro">
+                    <param id="0" name="Object">Sprite4</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="895890811979639" type="Sprite4">
+                    <param id="0" name="Object">Sprite8</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="873761922952863" type="Sprite4" />
+                <action id="-9" name="Destroy" sid="168763366021828" type="tiro" />
+                <action id="-10" name="Add to" sid="493865636344381" type="System">
+                    <param id="0" name="Variable">pontos</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Set text" sid="716888469114922" type="pontos">
+                    <param id="0" name="Text">&quot;&quot;&amp;pontos</param>
+                </action>
+                <action id="0" name="Play" sid="956735076602289" type="Audio">
+                    <param id="0" name="Audio file">Demon_4</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">-20</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="396556235871698">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="750661869716646" type="tiro">
+                    <param id="0" name="Object">Sprite5</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="850751280204855" type="Sprite5">
+                    <param id="0" name="Object">Sprite8</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="962720489738326" type="Sprite5" />
+                <action id="-9" name="Destroy" sid="930409925285973" type="tiro" />
+                <action id="-10" name="Add to" sid="962003535944483" type="System">
+                    <param id="0" name="Variable">pontos</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Set text" sid="972492090303027" type="pontos">
+                    <param id="0" name="Text">&quot;&quot;&amp;pontos</param>
+                </action>
+                <action id="0" name="Play" sid="474505052772329" type="Audio">
+                    <param id="0" name="Audio file">Demon_4</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">-20</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="994160654132458">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="533883334388512" type="tiro">
+                    <param id="0" name="Object">Sprite6</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="456635058110499" type="Sprite6">
+                    <param id="0" name="Object">Sprite8</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="649548087430322" type="Sprite6" />
+                <action id="-9" name="Destroy" sid="318370531618841" type="tiro" />
+                <action id="-10" name="Add to" sid="249227139928718" type="System">
+                    <param id="0" name="Variable">pontos</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Set text" sid="872915491822968" type="pontos">
+                    <param id="0" name="Text">&quot;&quot;&amp;pontos</param>
+                </action>
+                <action id="0" name="Play" sid="161224115765127" type="Audio">
+                    <param id="0" name="Audio file">Demon_4</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">-20</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="754110720333860">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="748668612611636" type="Sprite4">
+                    <param id="0" name="Object">player</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Subtract from" sid="968461859377596" type="System">
+                    <param id="0" name="Variable">vida</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="552824557737519">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="194356693051747" type="Sprite5">
+                    <param id="0" name="Object">player</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Subtract from" sid="940257458385132" type="System">
+                    <param id="0" name="Variable">vida</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="830115580771050">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="738350957190719" type="Sprite6">
+                    <param id="0" name="Object">player</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Subtract from" sid="552992996932559" type="System">
+                    <param id="0" name="Variable">vida</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="481407258360453">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="746401664232972" type="System">
+                    <param id="0" name="Variable">vida</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">3</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="205444676639462" type="hp">
+                    <param id="0" name="Animation">&quot;tres&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action behavior="ScrollTo" id="0" name="Shake" sid="238222208797514" type="player">
+                    <param id="0" name="Magnitude">20</param>
+                    <param id="1" name="Duration">0.4</param>
+                    <param id="2" name="Mode">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="776224218582331">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="734182469615259" type="System">
+                    <param id="0" name="Variable">vida</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="402534750210280" type="hp">
+                    <param id="0" name="Animation">&quot;dois&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action behavior="ScrollTo" id="0" name="Shake" sid="839260928262914" type="player">
+                    <param id="0" name="Magnitude">20</param>
+                    <param id="1" name="Duration">0.4</param>
+                    <param id="2" name="Mode">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="171683674252192">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="292738214769499" type="System">
+                    <param id="0" name="Variable">vida</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="704732450505181" type="hp">
+                    <param id="0" name="Animation">&quot;um&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action behavior="ScrollTo" id="0" name="Shake" sid="472559898171375" type="player">
+                    <param id="0" name="Magnitude">20</param>
+                    <param id="1" name="Duration">0.4</param>
+                    <param id="2" name="Mode">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="248748475357586">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="299065655361365" type="System">
+                    <param id="0" name="Variable">vida</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="680443614627923" type="gameover">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="0" name="Play" sid="286971662582345" type="Audio">
+                    <param id="0" name="Audio file">BossDeath</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">-40</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+                <action id="-12" name="Set group active" sid="991805201965588" type="System">
+                    <param id="0" name="Group name">&quot;movement&quot;</param>
+                    <param id="1" name="State">0</param>
+                </action>
+                <action id="-16" name="Wait" sid="854870098223928" type="System">
+                    <param id="0" name="Seconds">3</param>
+                </action>
+                <action id="-2" name="Go to layout" sid="393592232779265" type="System">
+                    <param id="0" name="Layout">menu</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="691715078071413">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="991373119939766" type="System" />
+            </conditions>
+            <actions>
+                <action id="-13" name="Set time scale" sid="935276169842648" type="System">
+                    <param id="0" name="Time scale">1.0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="824998072627788" type="gameover">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-3" name="Set position" sid="698898946078597" type="player">
+                    <param id="0" name="X">WindowWidth/2</param>
+                    <param id="1" name="Y">WindowHeight/2</param>
+                </action>
+                <action id="-9" name="Set value" sid="802904923153533" type="System">
+                    <param id="0" name="Variable">pontos</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="449854667552026" type="System">
+                    <param id="0" name="Variable">vida</param>
+                    <param id="1" name="Value">3</param>
+                </action>
+                <action id="-12" name="Set group active" sid="853479534596903" type="System">
+                    <param id="0" name="Group name">&quot;movement&quot;</param>
+                    <param id="1" name="State">1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="387950704304981" type="Sprite4" />
+                <action id="-9" name="Destroy" sid="644154942924435" type="Sprite5" />
+                <action id="-9" name="Destroy" sid="682548816775119" type="Sprite6" />
+                <action id="0" name="Set text" sid="834915890833351" type="Text">
+                    <param id="0" name="Text">&quot;Highscore: &quot;&amp;highscore</param>
+                </action>
+                <action id="5" name="Check item exists" sid="162692877182718" type="LocalStorage">
+                    <param id="0" name="Key">&quot;highscore&quot;</param>
+                </action>
+                <action id="0" name="Play" sid="768772677454817" type="Audio">
+                    <param id="0" name="Audio file">Menu8-Bit</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">-20</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="722473339934721">
+            <conditions>
+                <condition id="1" name="Is overlapping another object" sid="286964007504436" type="player">
+                    <param id="0" name="Object">bl</param>
+                </condition>
+                <condition id="-6" name="Every X seconds" sid="453569575609892" type="System">
+                    <param id="0" name="Interval (seconds)">3*spawn</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="754503151952496" type="System">
+                    <param id="0" name="Object to create">Sprite4</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="X">random(0,LayoutWidth)</param>
+                    <param id="3" name="Y">random(0,LayoutHeight/2)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="421967582223905">
+            <conditions>
+                <condition id="1" name="Is overlapping another object" sid="347956572223963" type="player">
+                    <param id="0" name="Object">bl</param>
+                </condition>
+                <condition id="-6" name="Every X seconds" sid="288393104751282" type="System">
+                    <param id="0" name="Interval (seconds)">2*spawn</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="247520200670383" type="System">
+                    <param id="0" name="Object to create">Sprite5</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="X">random(0,LayoutWidth)</param>
+                    <param id="3" name="Y">random(0,LayoutHeight/2)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="275313442827279">
+            <conditions>
+                <condition id="1" name="Is overlapping another object" sid="856641440446375" type="player">
+                    <param id="0" name="Object">bl</param>
+                </condition>
+                <condition id="-6" name="Every X seconds" sid="648107450395551" type="System">
+                    <param id="0" name="Interval (seconds)">4*spawn</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="649891735023326" type="System">
+                    <param id="0" name="Object to create">Sprite6</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="X">random(0,LayoutWidth)</param>
+                    <param id="3" name="Y">random(0,LayoutHeight/2)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="387725670869623">
+            <conditions>
+                <condition id="1" name="Is overlapping another object" sid="210758570376300" type="player">
+                    <param id="0" name="Object">ul</param>
+                </condition>
+                <condition id="-6" name="Every X seconds" sid="436298698544639" type="System">
+                    <param id="0" name="Interval (seconds)">3*spawn</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="859337470821512" type="System">
+                    <param id="0" name="Object to create">Sprite4</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="X">random(0,LayoutWidth)</param>
+                    <param id="3" name="Y">random(LayoutHeight/2,LayoutHeight-50)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="793201006164999">
+            <conditions>
+                <condition id="1" name="Is overlapping another object" sid="425714757261368" type="player">
+                    <param id="0" name="Object">ul</param>
+                </condition>
+                <condition id="-6" name="Every X seconds" sid="623483099795773" type="System">
+                    <param id="0" name="Interval (seconds)">2*spawn</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="373945825174402" type="System">
+                    <param id="0" name="Object to create">Sprite5</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="X">random(0,LayoutWidth)</param>
+                    <param id="3" name="Y">random(LayoutHeight/2,LayoutHeight-50)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="923946111133516">
+            <conditions>
+                <condition id="1" name="Is overlapping another object" sid="344978141276144" type="player">
+                    <param id="0" name="Object">ul</param>
+                </condition>
+                <condition id="-6" name="Every X seconds" sid="600864096360433" type="System">
+                    <param id="0" name="Interval (seconds)">4*spawn</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="413260655131063" type="System">
+                    <param id="0" name="Object to create">Sprite6</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="X">random(0,LayoutWidth)</param>
+                    <param id="3" name="Y">random(LayoutHeight/2,LayoutHeight-50)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="812862863722437">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="979359903599045" type="player">
+                    <param id="0" name="Object">Sprite8</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="739709581570861" type="System">
+                    <param id="0" name="Variable">pontos</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="997420832280569" type="Sprite8" />
+                <action id="0" name="Set text" sid="443318961245405" type="pontos">
+                    <param id="0" name="Text">&quot;&quot;&amp;pontos</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="362301450233283">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="155068625130608" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="993150770674489" type="System">
+                    <param id="0" name="Variable">spawn</param>
+                    <param id="1" name="Value">50/(15+pontos)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="510444607469109">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="324738874631545" type="System">
+                    <param id="0" name="Variable">highscore</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">pontos</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="173817604573888" type="System">
+                    <param id="0" name="Variable">highscore</param>
+                    <param id="1" name="Value">pontos</param>
+                </action>
+                <action id="0" name="Set text" sid="577630983132513" type="Text">
+                    <param id="0" name="Text">&quot;Highscore: &quot;&amp;highscore</param>
+                </action>
+                <action id="0" name="Set item" sid="928103733030270" type="LocalStorage">
+                    <param id="0" name="Key">&quot;highscore&quot;</param>
+                    <param id="1" name="Value">highscore</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="468832182887276">
+            <conditions>
+                <condition id="9" name="On item exists" sid="609385028810585" type="LocalStorage">
+                    <param id="0" name="Key">&quot;highscore&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="1" name="Get item" sid="826317799557247" type="LocalStorage">
+                    <param id="0" name="Key">&quot;highscore&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="429228326061474">
+            <conditions>
+                <condition id="1" name="On item get" sid="418869202911248" type="LocalStorage">
+                    <param id="0" name="Key">&quot;highscore&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="263446620900637" type="System">
+                    <param id="0" name="Variable">highscore</param>
+                    <param id="1" name="Value">LocalStorage.ItemValue</param>
+                </action>
+                <action id="0" name="Set text" sid="810570135367051" type="Text">
+                    <param id="0" name="Text">&quot;Highscore: &quot;&amp;highscore</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
