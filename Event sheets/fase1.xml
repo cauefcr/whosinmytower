@@ -14,10 +14,7 @@
             <sub-events>
                 <event-block sid="319365949768082">
                     <conditions>
-                        <condition id="0" name="On click" sid="582294430446872" type="Mouse">
-                            <param id="0" name="Mouse button">0</param>
-                            <param id="1" name="Click type">0</param>
-                        </condition>
+                        <condition id="0" name="On any touch start" sid="582294430446872" type="Touch" />
                     </conditions>
                     <actions>
                         <action id="0" name="Spawn another object" sid="469495299234175" type="player">
